@@ -10,7 +10,7 @@ export default function SimpleApiFilter() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    document.title = "AP21110010324"; // Replace with your actual roll number
+    document.title = "AP21110010324";
   }, []);
 
   const handleSubmit = async () => {
@@ -18,7 +18,7 @@ export default function SimpleApiFilter() {
       const parsedData = JSON.parse(apiInput);
       setError("");
       const response = await axios.post(
-        "http://localhost:3000/bfhl",
+        "https://parasbajal-api.onrender.com",
         parsedData
       );
       setResponseData(response.data);
@@ -58,13 +58,11 @@ export default function SimpleApiFilter() {
 
   const removeFilter = (filter) => {
     setSelectedFilters(selectedFilters.filter((item) => item !== filter));
-    setFilteredResponses([]); // Clear previous responses
+    setFilteredResponses([]);
   };
-
-  // Calculate the width based on the input length
   const calculateWidth = (input) => {
     const length = input.length;
-    return `${Math.max(200, length * 8)}px`; // Minimum width of 200px and each character adds 8px
+    return `${Math.max(200, length * 8)}px`;
   };
 
   return (
